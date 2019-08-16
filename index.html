@@ -16,5 +16,21 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace; background: #000;'>
   <div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
   </div>
+  <button class="switch_bg">切換背景</button>
 <script src="./renderer.js"></script>
+<script>
+  let hideBg = false;
+  document.querySelector('.switch_bg').addEventListener('click', () => {
+    hideBg = ! hideBg;
+    document.getElementById('arjs-video').style.opacity = (hideBg? 0: 1);
+  })
+</script>
+<style>
+  .switch_bg {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2;
+  }
+</style>
 </body>
