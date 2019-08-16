@@ -9,8 +9,10 @@ const modelLoader = new GLTFLoader();
 modelLoader.load('https://firebasestorage.googleapis.com/v0/b/arcorecloud-246504.appspot.com/o/fantancy_book.glb?alt=media&token=02f9e6f0-eaf8-4ee5-b23d-4b1b6614853f',
   ( gltf ) => {
     aniMixer = new THREE.AnimationMixer( gltf.scene );
-    const action = aniMixer.clipAction(gltf.animations[0]);
-    action.play();
+    if (gltf.animations[0]) {
+      const action = aniMixer.clipAction(gltf.animations[0]);
+      action.play();
+    }
     gltf.scene.scale.set(0.05,0.05,0.05) // scale here
     markerRoot.add(gltf.scene);
     // scene.add( gltf.scene );
