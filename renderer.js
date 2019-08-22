@@ -6,14 +6,15 @@ const GLTFLoader = require('three-gltf-loader');
 // init model loader
 let aniMixer = null;
 const modelLoader = new GLTFLoader();
-modelLoader.load('https://firebasestorage.googleapis.com/v0/b/arcorecloud-246504.appspot.com/o/fantancy_book.glb?alt=media&token=02f9e6f0-eaf8-4ee5-b23d-4b1b6614853f',
+// modelLoader.load('https://firebasestorage.googleapis.com/v0/b/arcorecloud-246504.appspot.com/o/fantancy_book.glb?alt=media&token=02f9e6f0-eaf8-4ee5-b23d-4b1b6614853',
+modelLoader.load('./data/scene.glb',
   ( gltf ) => {
     aniMixer = new THREE.AnimationMixer( gltf.scene );
     if (gltf.animations[0]) {
       const action = aniMixer.clipAction(gltf.animations[0]);
       action.play();
     }
-    gltf.scene.scale.set(0.05,0.05,0.05) // scale here
+    gltf.scene.scale.set(0.009,0.009,0.009) // scale here
     markerRoot.add(gltf.scene);
     // scene.add( gltf.scene );
   },
@@ -29,14 +30,21 @@ modelLoader.load('https://firebasestorage.googleapis.com/v0/b/arcorecloud-246504
 // init renderer
 var renderer	= new THREE.WebGLRenderer({
   antialias	: true,
-  alpha: true,
+	alpha: true,
+	precision: 'mediump',
+	logarithmicDepthBuffer: true,
+	// preserveDrawingBuffer: true
 });
 // renderer.shadowMap.type = THREE.BasicShadowMap
 // renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.shadowMap.enabled = true;
-	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
-	// renderer.setPixelRatio( 1/2 );
+// renderer.toneMapping = THREE.ACESFilmicToneMapping
+// gltf
+renderer.gammaOutput = true;
+renderer.gammaFactor = 2;
+	// renderer.setClearColor(new THREE.Color('lightgrey'), 0)
+	renderer.setPixelRatio( 1/1.5 );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
@@ -62,7 +70,7 @@ renderer.shadowMap.enabled = true;
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
-	var camera = new THREE.Camera();
+	var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 20 );
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -124,7 +132,8 @@ renderer.shadowMap.enabled = true;
 	////////////////////////////////////////////////////////////////////////////////
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
 		type : 'pattern',
-		patternUrl : THREEx.ArToolkitContext.baseURL + './data/patt.hiro',
+		// patternUrl : THREEx.ArToolkitContext.baseURL + './data/patt.hiro',
+		patternUrl : THREEx.ArToolkitContext.baseURL + './data/pattern-marker.patt',
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji',
 		// as we controls the camera, set changeMatrixMode: 'cameraTransformMatrix'
 		changeMatrixMode: 'cameraTransformMatrix'
