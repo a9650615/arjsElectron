@@ -16,17 +16,28 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace; background: #000;'>
   <div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
   </div>
-  <button class="switch_bg">切換背景</button>
+  <div class="control_btns">
+    <button class="switch_bg">切換背景</button>
+    <button class="fullscreen_btn">全螢幕</button>
+  </div>
 <script src="./renderer.js"></script>
 <script>
+  const electron = require('electron');
+  const eleWindow = electron.remote.getCurrentWindow();
   let hideBg = false;
+  let fullScreen = false;
   document.querySelector('.switch_bg').addEventListener('click', () => {
     hideBg = ! hideBg;
     document.getElementById('arjs-video').style.opacity = (hideBg? 0: 1);
   })
+  document.querySelector('.fullscreen_btn').addEventListener('click', () => {
+    fullScreen = !fullScreen;
+    console.log(eleWindow)
+    eleWindow.setFullScreen(!eleWindow.isFullScreen());
+  })
 </script>
 <style>
-  .switch_bg {
+  .control_btns {
     position: absolute;
     bottom: 30px;
     right: 30px;
