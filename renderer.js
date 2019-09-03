@@ -1,11 +1,11 @@
-const { ...THREE } = require('three');
-const GLTFLoader = require('three-gltf-loader');
+// const { ...THREE } = require('three');
+// const GLTFLoader = require('three-gltf-loader');
 //////////////////////////////////////////////////////////////////////////////////
 //		Init
 //////////////////////////////////////////////////////////////////////////////////
 // init model loader
 let aniMixer = null;
-const modelLoader = new GLTFLoader();
+const modelLoader = new THREE.GLTFLoader();
 // modelLoader.load('https://firebasestorage.googleapis.com/v0/b/arcorecloud-246504.appspot.com/o/fantancy_book.glb?alt=media&token=02f9e6f0-eaf8-4ee5-b23d-4b1b6614853',
 modelLoader.load('./data/scene.glb',
   ( gltf ) => {
@@ -29,11 +29,11 @@ modelLoader.load('./data/scene.glb',
 )
 // init renderer
 var renderer	= new THREE.WebGLRenderer({
-  antialias	: true,
+  // antialias	: true,
 	alpha: true,
 	precision: 'mediump',
 	logarithmicDepthBuffer: true,
-	// preserveDrawingBuffer: true
+	preserveDrawingBuffer: true
 });
 // renderer.shadowMap.type = THREE.BasicShadowMap
 // renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -44,8 +44,10 @@ renderer.shadowMap.enabled = true;
 renderer.gammaOutput = true;
 renderer.gammaFactor = 2;
 	// renderer.setClearColor(new THREE.Color('lightgrey'), 0)
-	renderer.setPixelRatio( 1/2 );
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setPixelRatio( 1/1.5 );
+	renderer.setSize(
+		window.innerWidth < 1080? 1080: window.innerWidth,
+		window.innerHeight < 720? 720: window.innerHeight );
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
@@ -70,7 +72,7 @@ renderer.gammaFactor = 2;
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
-	var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 20 );
+	var camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 20 );
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource

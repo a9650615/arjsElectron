@@ -1,0 +1,10 @@
+{
+  "background_color": "purple",
+  "description": "Shows random fox pictures. Hey, at least it isn't cats.",
+  "display": "fullscreen",
+  "icons": [
+  ],
+  "name": "ArToolKit",
+  "short_name": "ArToolKit",
+  "start_url": "index.html"
+}

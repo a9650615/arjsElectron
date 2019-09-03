@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <!-- three.js library -->
 <script src='./vendor/three.js/build/three.js'></script>
@@ -11,6 +13,7 @@
 <script src="./src/threex/threex-artoolkitcontext.js"></script>
 <script src="./src/threex/threex-arbasecontrols.js"></script>
 <script src="./src/threex/threex-armarkercontrols.js"></script>
+<script src="./src/GLTFLoader.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = './'</script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace; background: #000;'>
@@ -22,18 +25,23 @@
   </div>
 <script src="./renderer.js"></script>
 <script>
-  const electron = require('electron');
-  const eleWindow = electron.remote.getCurrentWindow();
+  // const electron = require('electron');
+  // const eleWindow = electron.remote.getCurrentWindow();
   let hideBg = false;
-  let fullScreen = false;
+  // let fullScreen = false;
   document.querySelector('.switch_bg').addEventListener('click', () => {
     hideBg = ! hideBg;
     document.getElementById('arjs-video').style.opacity = (hideBg? 0: 1);
   })
   document.querySelector('.fullscreen_btn').addEventListener('click', () => {
-    fullScreen = !fullScreen;
-    console.log(eleWindow)
-    eleWindow.setFullScreen(!eleWindow.isFullScreen());
+    // fullScreen = !fullScreen;
+    // console.log(eleWindow)
+    // eleWindow.setFullScreen(!eleWindow.isFullScreen());
+    if (!document.fullscreenElement) {
+      document.body.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
   })
 </script>
 <style>
