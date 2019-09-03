@@ -133,7 +133,7 @@ renderer.gammaFactor = 2;
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
 		type : 'pattern',
 		// patternUrl : THREEx.ArToolkitContext.baseURL + './data/patt.hiro',
-		patternUrl : THREEx.ArToolkitContext.baseURL + './data/pattern-marker.patt',
+		patternUrl : THREEx.ArToolkitContext.baseURL + './data/baojing-pattern.patt',
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji',
 		// as we controls the camera, set changeMatrixMode: 'cameraTransformMatrix'
 		changeMatrixMode: 'cameraTransformMatrix'
