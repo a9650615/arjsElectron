@@ -7,7 +7,7 @@
 let aniMixer = null;
 const modelLoader = new THREE.GLTFLoader();
 // modelLoader.load('https://firebasestorage.googleapis.com/v0/b/arcorecloud-246504.appspot.com/o/fantancy_book.glb?alt=media&token=02f9e6f0-eaf8-4ee5-b23d-4b1b6614853',
-modelLoader.load('./data/scene.glb',
+modelLoader.load('https://a9650615.github.io/arjsElectron/data/scene.glb',
   ( gltf ) => {
     aniMixer = new THREE.AnimationMixer( gltf.scene );
     if (gltf.animations[0]) {
