@@ -20,7 +20,7 @@
     "electron": "^6.0.2"
   },
   "dependencies": {
-    "three": "^0.107.0",
+    "three": "^0.125.0",
     "three-gltf-loader": "^1.107.0"
   }
 }
